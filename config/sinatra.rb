@@ -1,5 +1,3 @@
-require 'sinatra'
-
 configure do
-  set :show_exceptions, :after_handler
+  set :show_exceptions, false
 end

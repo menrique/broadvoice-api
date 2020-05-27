@@ -16,10 +16,10 @@ end
 
 # Not found handling
 not_found do
-  json error: 'Route not found'
+  json Helpers::Errors.handle(Exception.new('Route not found'))
 end
 
 # Common error handling
 error do
-  json error: env['sinatra.error'].message
+  json Helpers::Errors.handle(env['sinatra.error'])
 end

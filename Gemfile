@@ -12,6 +12,10 @@ gem "sinatra-activerecord"
 gem "sqlite3"
 gem "rake"
 
+# Data generators
+gem 'faker', require: true
+gem 'factory_bot'
+
 group :development, :test do
 
   # Shim to load environment variables from .env into ENV
@@ -19,4 +23,11 @@ group :development, :test do
 
   # Manage Procfile-based applications
   gem 'foreman'
+end
+
+group :test do
+
+  # Behaviour Driven Development for Ruby
+  gem 'rspec'
+  gem 'shoulda-matchers'
 end

@@ -1,6 +1,6 @@
 namespace "/cities" do
 
   get %r{/?} do
-    json route: 'GET /cities'
+    json Cities::Repository.get
   end
 end
