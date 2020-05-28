@@ -1,6 +1,6 @@
 namespace "/people" do
 
   get %r{/?} do
-    json route: 'GET /people'
+    json People::Repository.get
   end
 end

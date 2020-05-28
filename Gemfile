@@ -10,7 +10,7 @@ gem 'puma'
 # Persistence layer
 gem "sinatra-activerecord"
 gem "sqlite3"
-gem "rake"
+gem "rake", require: false
 
 # Data generators
 gem 'faker', require: true

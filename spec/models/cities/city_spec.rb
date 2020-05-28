@@ -10,6 +10,6 @@ describe Cities::City, type: :model do
 
   # Validations
   it { should validate_presence_of(:name) }
-  it { should validate_uniqueness_of(:name) }
+  it { should validate_uniqueness_of(:name).scoped_to(:state) }
   it { should validate_presence_of(:state) }
 end

@@ -10,14 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_27_194358) do
+ActiveRecord::Schema.define(version: 2020_05_28_005545) do
 
   create_table "cities", force: :cascade do |t|
     t.string "name", null: false
     t.string "state", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name", "state"], name: "index_cities_on_name_and_state", unique: true
     t.index ["state"], name: "index_cities_on_state"
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_companies_on_name", unique: true
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "email", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_people_on_email", unique: true
+    t.index ["name"], name: "index_people_on_name", unique: true
   end
 
 end

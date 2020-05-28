@@ -1,6 +1,6 @@
 namespace "/companies" do
 
   get %r{/?} do
-    json route: 'GET /companies'
+    json Companies::Repository.get
   end
 end
