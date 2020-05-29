@@ -2,8 +2,14 @@ module Cities
   module Repository
 
     # Seed DB
-    def self.seed
-      FactoryBot.create_list(:city, 100, :valid)
+    def self.seed(prog_indicator)
+
+      # Create cities
+      cities = FactoryBot.build_list(:city, 100, :valid) do |city|
+        city.save!
+        prog_indicator.next
+      end
+      cities
     end
 
     # Get all available records

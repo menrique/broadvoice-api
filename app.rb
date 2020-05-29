@@ -2,7 +2,7 @@
 require './config/environment'
 
 # Load sinatra extensions
-require "sinatra/reloader" if development?
+require './config/reloader'
 require 'sinatra/namespace'
 require 'sinatra/json'
 
@@ -11,7 +11,7 @@ Dir["./components/**/routes.rb"].each{ |file| require file }
 
 # Default route
 get '/' do
-  redirect '/people'
+  redirect '/cities'
 end
 
 # Not found handling

@@ -1,6 +1,6 @@
 namespace "/companies" do
 
   get %r{/?} do
-    json Companies::Repository.get
+    json Presenters::Resource.render(Companies::Repository.get)
   end
 end

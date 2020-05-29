@@ -1,6 +1,6 @@
 namespace "/people" do
 
   get %r{/?} do
-    json People::Repository.get
+    json Presenters::Resource.render(People::Repository.get)
   end
 end

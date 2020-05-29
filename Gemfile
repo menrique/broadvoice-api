@@ -23,6 +23,9 @@ group :development, :test do
 
   # Manage Procfile-based applications
   gem 'foreman'
+
+  # Debugging the app
+  gem 'byebug'
 end
 
 group :test do

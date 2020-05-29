@@ -1,6 +1,6 @@
 namespace "/cities" do
 
   get %r{/?} do
-    json Cities::Repository.get
+    json Presenters::Resource.render(Cities::Repository.get)
   end
 end
