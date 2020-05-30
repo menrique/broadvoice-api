@@ -1,1 +1,0 @@
-Dir["./spec/factories/**/*.rb"].each{|f| require f}

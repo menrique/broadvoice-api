@@ -16,6 +16,5 @@ module Cities
     def self.get(filter = {})
       Cities::City.where(filter)
     end
-
   end
 end

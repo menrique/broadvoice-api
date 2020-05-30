@@ -1,18 +1,12 @@
 module Presenters
-  class Resource
-    attr_accessor :obj
-    BLACKLIST = %w{created_at updated_at}
+  class Resource < Common
 
-    def initialize(obj)
-      self.obj = obj
+    def present(**options)
+      obj.as_json(options)
     end
 
-    def render
-      obj.as_json(only: obj.attributes.keys - BLACKLIST)
-    end
-
-    def self.render(collection)
-      collection.map{|obj| new(obj).render}
+    def self.present(obj, **options)
+      collection?(obj) ? obj.map{|elem| new(elem).present(**options)} : new(obj).present(**options)
     end
   end
 end

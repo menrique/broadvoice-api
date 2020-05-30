@@ -25,7 +25,7 @@ group :development, :test do
   gem 'foreman'
 
   # Debugging the app
-  gem 'byebug'
+  gem 'pry-byebug'
 end
 
 group :test do

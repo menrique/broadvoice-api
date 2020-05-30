@@ -23,6 +23,5 @@ module Companies
     def self.get(filter = {})
       Companies::Company.where(filter)
     end
-
   end
 end

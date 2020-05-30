@@ -2,24 +2,7 @@
 require './config/environment'
 
 # Load sinatra extensions
-require './config/reloader'
-require 'sinatra/namespace'
-require 'sinatra/json'
+require './config/extensions'
 
-# Load component routes
-Dir["./components/**/routes.rb"].each{ |file| require file }
-
-# Default route
-get '/' do
-  redirect '/cities'
-end
-
-# Not found handling
-not_found do
-  json Helpers::Errors.handle(Exception.new('Route not found'))
-end
-
-# Common error handling
-error do
-  json Helpers::Errors.handle(env['sinatra.error'])
-end
+# Mount components routes
+require './components/routes'

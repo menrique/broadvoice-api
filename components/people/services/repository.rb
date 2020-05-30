@@ -35,6 +35,5 @@ module People
     def self.get(filter = {})
       People::Person.where(filter)
     end
-
   end
 end
