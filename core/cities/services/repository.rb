@@ -1,5 +1,6 @@
 module Cities
   module Repository
+    extend Common::Repository
 
     # Seed DB
     def self.seed(prog_indicator)
@@ -14,7 +15,7 @@ module Cities
 
     # Get all available records
     def self.get(options = {})
-      Cities::City.where(options[:filter]).limit(options[:limit]).order(options[:order])
+      get_with_options(Cities::City, options)
     end
   end
 end

@@ -111,12 +111,11 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 
-  # Avoid prefixing FactoryBot all the time
+  # Syntax extentions
   config.include FactoryBot::Syntax::Methods
-
-  # Add shoulda matchers
   config.include(Shoulda::Matchers::ActiveRecord, type: :model)
   config.include(Shoulda::Matchers::ActiveModel, type: :model)
+  config.include(Rack::Test::Methods)
 
   # Silence AR logger on specs
   ActiveRecord::Base.logger = nil

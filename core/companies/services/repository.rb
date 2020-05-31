@@ -1,5 +1,6 @@
 module Companies
   module Repository
+    extend Common::Repository
 
     # Seed DB
     def self.seed(cities, prog_indicator)
@@ -21,8 +22,7 @@ module Companies
 
     # Get all available records
     def self.get(options = {})
-      Companies::Company.where(options[:filter]).limit(options[:limit]).order(options[:order])
-
+      get_with_options(Companies::Company, options)
     end
   end
 end

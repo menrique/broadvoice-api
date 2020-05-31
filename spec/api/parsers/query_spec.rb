@@ -1,5 +1,5 @@
 describe Parsers::Query do
-  let(:params) { { name: 'jane', order: 'name:asc,email:desc', limit: '5', only: 'name,description', except: 'email' } }
+  let(:params) { { name: 'jane', order: 'name:asc,email:desc', limit: '100', page: '5', only: 'name,description', except: 'email' } }
   let(:subject) { described_class.new(params) }
 
   it {is_expected.to be_a(Parsers::Base)}
@@ -9,7 +9,7 @@ describe Parsers::Query do
     it 'is expect to return the parsed parameters excluding created_at and updated_at by default' do
       expect(subject.parse).to eq({ data: {filter: { name: 'jane' },
                                            order: { name: 'asc', email: 'desc' },
-                                           limit: 5},
+                                           limit: 100, page: 5},
                                     presentation: {only: %w[name description], except: %w[email created_at updated_at]}
                                   })
     end

@@ -1,5 +1,5 @@
 describe Parsers::DataQuery do
-  let(:params) { { name: 'jane', order: 'name:asc,email:desc', limit: '5' } }
+  let(:params) { { name: 'jane', order: 'name:asc,email:desc', limit: '100', page: '5' } }
   let(:subject) { described_class.new(params) }
 
   it {is_expected.to be_a(Parsers::Base)}
@@ -9,12 +9,14 @@ describe Parsers::DataQuery do
     it 'is expect to return the parsed parameters' do
       expect(subject.parse).to eq({ filter: { name: 'jane' },
                                     order: { name: 'asc', email: 'desc' },
-                                    limit: 5})
+                                    limit: 100, page: 5})
     end
 
     context ':order' do
       context 'when missing' do
-        let(:params) { { name: 'jane', limit: '5' } }
+        before do
+          params.delete(:order)
+        end
 
         it 'is expect to not return the key' do
           expect(subject.parse.keys).to_not include(:order)
@@ -22,7 +24,9 @@ describe Parsers::DataQuery do
       end
 
       context 'when empty' do
-        let(:params) { { name: 'jane', order: '', limit: '5' } }
+        before do
+          params[:order] = ''
+        end
 
         it 'is expect to not return the key' do
           expect(subject.parse.keys).to_not include(:order)
@@ -30,27 +34,23 @@ describe Parsers::DataQuery do
       end
     end
 
-    context ':name' do
+    context ':filter' do
       context 'when missing' do
-        let(:params) { { order: 'name:asc,email:desc', limit: '5' } }
-
-        it 'is expect to not return the key' do
-          expect(subject.parse.keys).to_not include(:name)
+        before do
+          params.delete(:name)
         end
-      end
 
-      context 'when empty' do
-        let(:params) { { name: '', order: 'name:asc,email:desc', limit: '5' } }
-
-        it 'is expect to not return the key' do
-          expect(subject.parse.keys).to_not include(:name)
+        it 'is expect to be an empty hash' do
+          expect(subject.parse[:filter]).to eq({})
         end
       end
     end
 
     context ':limit' do
       context 'when missing' do
-        let(:params) { { name: 'jane', order: 'name:asc,email:desc' } }
+        before do
+          params.delete(:limit)
+        end
 
         it 'is expect to not return the key' do
           expect(subject.parse.keys).to_not include(:limit)
@@ -58,10 +58,34 @@ describe Parsers::DataQuery do
       end
 
       context 'when empty' do
-        let(:params) { { name: 'jane', order: 'name:asc,email:desc', limit: '' } }
+        before do
+          params[:limit] = ''
+        end
 
         it 'is expect to not return the key' do
           expect(subject.parse.keys).to_not include(:limit)
+        end
+      end
+    end
+
+    context ':page' do
+      context 'when missing' do
+        before do
+          params.delete(:page)
+        end
+
+        it 'is expect to be 0' do
+          expect(subject.parse[:page]).to be 0
+        end
+      end
+
+      context 'when empty' do
+        before do
+          params[:page] = ''
+        end
+
+        it 'is expect to not return the key' do
+          expect(subject.parse[:page]).to be 0
         end
       end
     end

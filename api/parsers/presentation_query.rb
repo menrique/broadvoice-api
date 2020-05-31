@@ -1,6 +1,7 @@
 module Parsers
   class PresentationQuery < Base
 
+    # Decompose query params to select and exclude fields
     def parse
       symbolize(
           { only:   parse_fields(params[:only]),

@@ -4,8 +4,8 @@ before do
 end
 
 # Redirect to default endpoint
-get '/' do
-  redirect '/cities'
+get %r{/?} do
+  json({ message: 'Welcome to Broadvoice API' })
 end
 
 # Not found handling
@@ -15,5 +15,6 @@ end
 
 # Base error handling
 error do
-  json Presenters::Error.present(env['sinatra.error'])
+  # json Presenters::Error.present(env['sinatra.error'])
+  json Presenters::Error.present(Exception.new('Ups! Something went wrong.'))
 end

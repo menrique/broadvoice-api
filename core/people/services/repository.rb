@@ -1,5 +1,6 @@
 module People
   module Repository
+    extend Common::Repository
 
     # Seed DB
     def self.seed(cities, prog_indicator)
@@ -33,7 +34,7 @@ module People
 
     # Get all available records
     def self.get(options = {})
-      People::Person.where(options[:filter]).limit(options[:limit]).order(options[:order])
+      get_with_options(People::Person, options)
     end
   end
 end

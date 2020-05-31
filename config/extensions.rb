@@ -6,7 +6,7 @@ require 'sinatra/json'
 if development?
   require "sinatra/reloader"
 
-  Dir["./app.rb", "./config/**/*.rb""./core/**/*.rb",].each{ |file| also_reload file }
+  Dir["./config/**/*.rb", "./app.rb", "./core/**/*.rb", "./api/**/*.rb",].each{ |file| also_reload file }
   after_reload do
     puts 'App reloaded!'
   end

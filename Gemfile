@@ -33,4 +33,5 @@ group :test do
   # Behaviour Driven Development for Ruby
   gem 'rspec'
   gem 'shoulda-matchers'
+  gem 'rack-test'
 end

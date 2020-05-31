@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :city, class: Cities::City do
-    name  { Faker::Address.unique.city }
+    name  { "#{Faker::Address.unique.city} (#{Faker::Address.unique.community})" }
     state { Faker::Address.state_abbr }
 
     trait :with_companies do
