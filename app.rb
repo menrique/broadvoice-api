@@ -4,5 +4,5 @@ require './config/environment'
 # Load sinatra extensions
 require './config/extensions'
 
-# Mount components routes
-require './components/routes'
+# Load API components
+Dir["./api/**/*.rb"].sort.each{ |file| require file }
