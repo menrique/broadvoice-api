@@ -11,7 +11,7 @@ module Companies
         company.save!
 
         # Assign in what cities the company operates
-        cities.sample(rand(1..cities_count)).each do |city|
+        cities.sample(rand(1..cities_count/2)).each do |city|
           FactoryBot.create(:company_city, city: city, company: company)
         end
 

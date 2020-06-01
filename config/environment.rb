@@ -13,3 +13,6 @@ require './config/active_record'
 
 # Load core components
 Dir["./core/**/*.rb"].each{|f| require f}
+
+# Load factories for seeding
+Dir["./spec/core/**/factories/*.rb"].each{|f| require f}
